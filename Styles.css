@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+
+body { 
+    font-family: sans-serif; 
+}
+
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 100%; /* half-width */
+  height: 160px;
+  margin-right: 10px;
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(gallery-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
