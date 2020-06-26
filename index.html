@@ -9,9 +9,6 @@
     <!-- link flickity CSS -->
     <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
 
-    <!-- google maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?v=3exp&libraries=places&key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc"></script>
-
 </head>
 <body>
     <header>
@@ -24,48 +21,41 @@
         <div class="container">
             <div class="container">
                 <div class="row">
-                  <div class="col-4">
+                  <div class="col-sm-4">
                     <div class="row"> 
-
-≈
-                        <form class="form-group">
-                            <!-- auto pop  location search input -->
-                            <label>Location:</label>
-                            <input id="searchInput" class="form-control " type="text" placeholder="Enter a city. . .">
-                            <input type="hidden" id="latitudeInput">
-                            <input type="hidden" id="longitudeInput">
-                            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-                        </form>
-                          <!-- display for location being populated -->
-                            <br><br>
-                            <div class="latLongView">
-                            <p><b>Latitude:</b><span id="latitudeView"></span></p>
-                            <p><b>Latitude:</b><span id="longitudeView"></span></p>
-                            </div>
+                      <!-- auto pop  location search input -->
+                      <label>Location:</label>
+                      <input id="searchInput" class="form-control" type="text" placeholder="Enter a city. . .">
+                      <input type="hidden" id="latitudeInput">
+                      <input type="hidden" id="longitudeInput">
+                      <!-- <button id="srchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+                      <!-- display for location being populated -->
+                      <br><br>
+                      <div class="latLongView">
+                      <p><b>Latitude:</b><span id="latitudeView"></span></p>
+                      <p><b>Longitude:</b><span id="longitudeView"></span></p>
+                      </div>
                     </div>
 
                     <div class="row"> 
-                        <ul class="list-group">
-                            <li class="list-group-item active">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <ul id="cityList" class="list-group">
+                            <!-- <li class="list-group-item active">Cras justo odio</li> -->
                         </ul>
                     </div>
                   </div>
-                  <div class="col-8">
-                    <div class="row "> 
+                  <div class="col-sm-8">
+                    <div class="row"> 
                         <div class="card-body">
-                            <h5 id="cityName" class="card-title">CityNameHere</h5><br>
-                            <h6 id="temperature" class="card-subtitle mb-2 text-muted">temperatureHere</h6><br>
-                            <h6 id="humidity" class="card-subtitle mb-2 text-muted">humidityHere</h6><br>
-                            <h6 id="windSpeed" class="card-subtitle mb-2 text-muted">windSpeedHere</h6><br>
-                            <h6 id="UV Index" class="card-subtitle mb-2 text-muted">UVIndexHere</h6><br>
+                            <h4 id="cityName" class="card-title"></h4><br>
+                            <h5 id="temperature" class="card-subtitle mb-2"></h5><br>
+                            <h5 id="humidity" class="card-subtitle mb-2"></h5><br>
+                            <h5 id="windSpeed" class="card-subtitle mb-2"></h5><br>
+                            <h5 id="cityDisc" class="card-subtitle mb-2"></h5><br>
 
                         </div>
                     </div>
-                    <div class="row"> 
+                  </div>
+                    <div class="col-sm-12"> 
                         <div class="card-body">
                             <h1>5-Day Forecast</h1>
                            <!-- Flickity HTML init -->
@@ -128,7 +118,7 @@
                     </div>
                   </div>
 
-                </div>
+                
 
 
 
@@ -139,15 +129,21 @@
 
     
 </body>
+
 <!-- link to Jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- google maps API -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3exp&libraries=places&key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc"></script>
+
 <!-- link to bootstrap js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 <!-- link flickity JS -->
 <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+<!-- weather stuff -->
+<script src="./weather.js"></script>
 <!-- link to main JS -->
 <script src="./brain.js"></script>
 </html>
