@@ -106,6 +106,7 @@ $(document).ready(function () {
 function produceWeatherResults(theLat,theLong) {
 
             // Here we are building the URL we need to query the database
+            
             var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="+ theLat +"&lon="+ theLong +"&units=imperial&appid=" + APIKey;
 
             // Here we run our AJAX call to the OpenWeatherMap API
