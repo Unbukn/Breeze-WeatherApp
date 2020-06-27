@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // First get the client ip address
-    $.getJSON('https://api.ipinfodb.com/v3/ip-city/?key=<5751d8bc1f2eb9ccf4b0049537647b5cd2d74ccbc1a78611134da66f63aa6b19>&format=json&callback=?', function(data) {
-    var crntPC = data.ipAddress
+    $.getJSON('https://api.ipregistry.co/?key=4sl8k6on8u1sef', function(data) {
+    var crntPC = data.ip
     console.log(crntPC)
         // next use ip address to find geo location
         var getTheIP = {
@@ -23,7 +23,6 @@ $(document).ready(function () {
         });
     });
 
-    console.log(window)
     // define list containing of cities
     var cityList = $("#cityList")
     var yourList = [
@@ -103,15 +102,6 @@ $(document).ready(function () {
 
         }
 
-     
-
-
-        // event listener for when the submit button is selected or enter is clicked
-        $("#searchInput").on("submit", function (e) {
-            e.preventDefault();
-            console.log("The enter button was selected")
-
-        });
         
 function produceWeatherResults(theLat,theLong) {
 
@@ -126,7 +116,7 @@ function produceWeatherResults(theLat,theLong) {
             // We store all of the retrieved data inside of an object called "response"
             .then(function(OpenWeatherMap) {
                 // Log the queryURL
-                // console.log(OpenWeatherMap);
+                console.log(OpenWeatherMap);
                 // grab the name of the city 
                 var cityName = OpenWeatherMap.city.name 
                 // add the name of the city to the DOM
@@ -147,6 +137,81 @@ function produceWeatherResults(theLat,theLong) {
                 var cityDisc = OpenWeatherMap.list[0].weather[0].description
                 // add the UV index to the DOM
                 $("#cityDisc").text("Description: " + cityDisc);
+
+                // clear out the forecast container
+                
+                var forcastContainer = $("#forcastContainer")
+                
+                for (j = 0; j < OpenWeatherMap.list.length; j++) {
+                // get the date
+                var theDate = OpenWeatherMap.list[j].dt_txt
+                // get the temp
+                var theTemp = OpenWeatherMap.list[j].main.temp
+                // get the humidity
+                var theHumi = OpenWeatherMap.list[j].main.humidity
+
+                // create a new div for the
+                var carousel = $("<div data-flickity>")
+                // add class to the carousel
+                carousel.addClass("carousel")
+                // add the carousel to the forcastContainer
+                carousel.appendTo(forcastContainer);
+
+
+
+                // create a new div for the carousel-cell
+                var carouselCell = $("<div>")
+                // add carousel class to the card
+                carouselCell.addClass("carousel-cell");
+                // attach the carousel to the carousel Container
+                carousel.append(carouselCell);
+
+                //create a card for the day
+                var weatherCard = $("<div>")
+                // add the card class to the DIV
+                weatherCard.addClass("card")
+                weatherCard.attr("style", "width: 18rem;");
+                // add the weather card to the carousel class
+                weatherCard.appendTo(carouselCell);
+                
+                // create the card-body
+                var cardBody = $("<div>")
+                cardBody.addClass("card-body");
+                // add the card body to the weather card
+                cardBody.appendTo(weatherCard)
+                
+                // add a card title
+                var cardTitle = $("<h5>")
+                // add class to the card title
+                cardTitle.addClass("card-title");
+                // add text the card-title
+                cardTitle.text(theDate)
+                // append the card title to the card body
+                cardTitle.appendTo(cardBody);
+                
+                // add a card humidity
+                var cardTemp = $("<h6>")
+                // add class to the card title
+                cardTemp.addClass("card-subtitle mb-2 text-muted");
+                // add text the card-title
+                cardTemp.text(theTemp)
+                // append the card title to the card body
+                cardTemp.appendTo(cardBody);
+
+                // add a card humidity
+                var cardHumid = $("<h6>")
+                // add class to the card title
+                cardHumid.addClass("card-subtitle mb-2 text-muted");
+                // add text the card-title
+                cardHumid.text(theHumi)
+                // append the card title to the card body
+                cardHumid.appendTo(cardBody);
+
+                // append the card body to the card
+                carouselCell.appendTo(carousel);
+
+                    
+                }
 
             });
     
