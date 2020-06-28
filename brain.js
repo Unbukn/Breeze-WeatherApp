@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    // moment object
+    var m = moment.parseZone()
+    console.log(m)
     // First get the client ip address
     $.getJSON('https://api.ipregistry.co/?key=4sl8k6on8u1sef', function(data) {
     var crntPC = data.ip
@@ -16,10 +19,11 @@ $(document).ready(function () {
         }
 
         $.ajax(getTheIP).done(function (theCrntLocation) {
-            console.log(theCrntLocation);
+            var theLocation = theCrntLocation.city
+            console.log(theLocation); 
             var theLat = theCrntLocation.latitude
             var theLong = theCrntLocation.longitude
-            produceWeatherResults(theLat, theLong)  
+            produceWeatherResults(theLocation,theLat, theLong)  
         });
     });
 
@@ -64,13 +68,10 @@ $(document).ready(function () {
         $(document).on("change", searchInput, function () {
             document.getElementById("latitudeInput").value = "";
             document.getElementById("longitudeInput").value = "";
-            // document.getElementById("latitudeView").innerHTML = "";
-            // document.getElementById("longitudeView").innerHTML = "";
         });
 
         
         function buildCityList(yourList) {
-            var yourList = yourList
             // first empty the current contents of the ul for the cities
             cityList.empty();
             for (i = 0; i < yourList.length; i++) {
@@ -94,21 +95,22 @@ $(document).ready(function () {
                // event listener for when a city is selected
         $(".list-group-item").on("click", function (e) {
             e.preventDefault();
+            theLocation = $(this).text()
             theLat = $(this).attr("lat")
             theLong = $(this).attr("long")
-            produceWeatherResults(theLat, theLong)            
+            produceWeatherResults(theLocation, theLat, theLong)            
 
         });
 
         }
 
         
-function produceWeatherResults(theLat,theLong) {
-
+function produceWeatherResults(theLocation,theLat,theLong) {
+        console.log(theLocation)
             // Here we are building the URL we need to query the database
             
-            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="+ theLat +"&lon="+ theLong +"&units=imperial&appid=" + APIKey;
-
+            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ theLat +"&lon="+ theLong +"&units=imperial&exclude=hourly,minutely&appid=" + APIKey;
+            
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
             url: queryURL,
@@ -119,23 +121,23 @@ function produceWeatherResults(theLat,theLong) {
                 // Log the queryURL
                 console.log(OpenWeatherMap);
                 // grab the name of the city 
-                var cityName = OpenWeatherMap.city.name 
+                var cityName = theLocation
                 // add the name of the city to the DOM
                 $("#cityName").text(cityName);
                 // grab the temp of the city
-                var cityTemp = OpenWeatherMap.list[0].main.temp
+                var cityTemp = OpenWeatherMap.current.temp
                 // add the temp to the DOM
                 $("#temperature").text("Temperature: " + cityTemp);
                 // grab list.main.humidity
-                var cityHumidity = OpenWeatherMap.list[0].main.humidity
+                var cityHumidity = OpenWeatherMap.current.humidity
                 // add the humidity to the DOM
                 $("#humidity").text("Humidity: " + cityHumidity);
                 // get the wind speed
-                var cityWindSpeed = OpenWeatherMap.list[0].wind.speed
+                var cityWindSpeed = OpenWeatherMap.current.wind_speed
                 // add the wind speed to the DOM
                 $("#windSpeed").text("Wind Speed: " + cityWindSpeed + "MPH");
                 // get the disc list.weather.description
-                var cityDisc = OpenWeatherMap.list[0].weather[0].description
+                var cityDisc = OpenWeatherMap.current.weather[0].description
                 // add the UV index to the DOM
                 $("#cityDisc").text("Description: " + cityDisc);
 
@@ -152,9 +154,10 @@ function produceWeatherResults(theLat,theLong) {
                 var theHumi = OpenWeatherMap.list[j].main.humidity
 
                 // create a new div for the
-                var carousel = $("<div data-flickity>")
+                var carousel = $("<div>")
                 // add class to the carousel
                 carousel.addClass("carousel")
+                carousel.attr("data-flickity>")
                 // add the carousel to the forcastContainer
                 carousel.appendTo(forcastContainer);
 
