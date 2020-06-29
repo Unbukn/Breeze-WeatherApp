@@ -48,8 +48,6 @@ $(document).ready(function () {
             types: ["geocode"]
         });
 
-
-
         // event listener for google search bar.
         google.maps.event.addListener(autocomplete,  "place_changed", function () {
         var near_place = autocomplete.getPlace();
@@ -63,12 +61,9 @@ $(document).ready(function () {
         newCity = newArray
         yourList.push(newCity)
 
-
-        console.log(yourList)
         // build new list item with city found in it
         // get the current value of the search bar
         buildCityList(yourList)
-           
         });
         
         // event listener for typing in a city and out outputting the coordinates
@@ -77,7 +72,6 @@ $(document).ready(function () {
             document.getElementById("longitudeInput").value = "";
         });
 
-        
         function buildCityList(yourList) {
             // first empty the current contents of the ul for the cities
             cityList.empty();
@@ -120,8 +114,8 @@ $(document).ready(function () {
         }
 
         
-function produceWeatherResults(theLocation,theLat,theLong) {
-        console.log(theLocation)
+        function produceWeatherResults(theLocation,theLat,theLong) {
+            console.log(theLocation)
             // Here we are building the URL we need to query the database
             
             var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ theLat +"&lon="+ theLong +"&cnt=16&units=imperial&exclude=hourly,minutely&appid=" + APIKey;
@@ -156,10 +150,6 @@ function produceWeatherResults(theLocation,theLat,theLong) {
                 var cityDisc = OpenWeatherMap.current.weather[0].description
                 // add the UV index to the DOM
                 $("#cityDisc").text("Description: " + cityDisc);
-
-                // clear out the forecast container
-                
-                
                 
                 for (j = 0; j < OpenWeatherMap.daily.length; j++) {
                 var m = moment()
@@ -169,12 +159,11 @@ function produceWeatherResults(theLocation,theLat,theLong) {
                 var theTemp = OpenWeatherMap.daily[j].temp.day
                 // get the humidity
                 var theHumi = OpenWeatherMap.daily[j].humidity
-
                 // add text the card-title
                 $("#day"+j).text(theDate)
-
+                // set temperature
                 $("#temp"+j).html('Temperature: ' + theTemp + '<span>&#8457;</span>')
-
+                // set humidity
                 $("#humidity"+j).html('Humidity: ' + theHumi + '<span>&#37;</span>')           
                     
                 }
