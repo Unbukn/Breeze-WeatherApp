@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    // moment object
-    var m = moment.parseZone()
-    console.log(m)
     // First get the client ip address
     $.getJSON('https://api.ipregistry.co/?key=4sl8k6on8u1sef', function(data) {
     var crntPC = data.ip
@@ -30,7 +27,15 @@ $(document).ready(function () {
     // define list containing of cities
     var cityList = $("#cityList")
     var yourList = [
+        ["Austin, TX, USA", 30.267153, -97.7430608],
+        ["Chicago, IL, USA", 41.8781136, -87.6297982],
         ["New York, NY, USA", 40.7127753, -74.0059728],
+        ["Orlando, FL, USA", 28.5383355, -81.3792365],
+        ["San Francisco, CA, USA", 37.7749295, -122.4194155],
+        ["Seattle, WA, USA", 47.6062095, -122.3320708],
+        ["Denver, CO, USA", 39.7392358, -104.990251],
+        ["Atlanta, GA, USA", 33.7489954, -84.3879824],
+        
     ];
     // api call to open weather api
     var APIKey = "19ebe7d8453b09616b508ab44e2e92b8";
@@ -57,6 +62,8 @@ $(document).ready(function () {
 
         newCity = newArray
         yourList.push(newCity)
+
+
         console.log(yourList)
         // build new list item with city found in it
         // get the current value of the search bar
@@ -95,9 +102,17 @@ $(document).ready(function () {
                // event listener for when a city is selected
         $(".list-group-item").on("click", function (e) {
             e.preventDefault();
+            // remove the active class from any others that could be out there
+            $(".active").removeClass("active");
+            // add the active class to the selected list item
+            $(this).addClass("active");
+            // grab the location from the list item
             theLocation = $(this).text()
+            // grab the latitude from the list item
             theLat = $(this).attr("lat")
+            // grab the longitude from the list item
             theLong = $(this).attr("long")
+            // produce the results
             produceWeatherResults(theLocation, theLat, theLong)            
 
         });
@@ -109,7 +124,7 @@ function produceWeatherResults(theLocation,theLat,theLong) {
         console.log(theLocation)
             // Here we are building the URL we need to query the database
             
-            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ theLat +"&lon="+ theLong +"&units=imperial&exclude=hourly,minutely&appid=" + APIKey;
+            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ theLat +"&lon="+ theLong +"&cnt=16&units=imperial&exclude=hourly,minutely&appid=" + APIKey;
             
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
@@ -123,15 +138,16 @@ function produceWeatherResults(theLocation,theLat,theLong) {
                 // grab the name of the city 
                 var cityName = theLocation
                 // add the name of the city to the DOM
-                $("#cityName").text(cityName);
+                $("#cityName").text("Current City: " + cityName);
+                $(".navbar-brand").text("Current City: " + cityName);
                 // grab the temp of the city
                 var cityTemp = OpenWeatherMap.current.temp
                 // add the temp to the DOM
-                $("#temperature").text("Temperature: " + cityTemp);
+                $("#temperature").html('Temperature: ' + cityTemp + '<span>&#8457;</span>');
                 // grab list.main.humidity
                 var cityHumidity = OpenWeatherMap.current.humidity
                 // add the humidity to the DOM
-                $("#humidity").text("Humidity: " + cityHumidity);
+                $("#humidity").html('Humidity: ' + cityHumidity + '<span>&#37;</span>');
                 // get the wind speed
                 var cityWindSpeed = OpenWeatherMap.current.wind_speed
                 // add the wind speed to the DOM
@@ -143,77 +159,23 @@ function produceWeatherResults(theLocation,theLat,theLong) {
 
                 // clear out the forecast container
                 
-                var forcastContainer = $("#forcastContainer")
                 
-                for (j = 0; j < OpenWeatherMap.list.length; j++) {
+                
+                for (j = 0; j < OpenWeatherMap.daily.length; j++) {
+                var m = moment()
                 // get the date
-                var theDate = OpenWeatherMap.list[j].dt_txt
+                var theDate = m.add(j, 'days').format('dddd MMM Do');
                 // get the temp
-                var theTemp = OpenWeatherMap.list[j].main.temp
+                var theTemp = OpenWeatherMap.daily[j].temp.day
                 // get the humidity
-                var theHumi = OpenWeatherMap.list[j].main.humidity
+                var theHumi = OpenWeatherMap.daily[j].humidity
 
-                // create a new div for the
-                var carousel = $("<div>")
-                // add class to the carousel
-                carousel.addClass("carousel")
-                carousel.attr("data-flickity>")
-                // add the carousel to the forcastContainer
-                carousel.appendTo(forcastContainer);
-
-
-
-                // create a new div for the carousel-cell
-                var carouselCell = $("<div>")
-                // add carousel class to the card
-                carouselCell.addClass("carousel-cell");
-                // attach the carousel to the carousel Container
-                carousel.append(carouselCell);
-
-                //create a card for the day
-                var weatherCard = $("<div>")
-                // add the card class to the DIV
-                weatherCard.addClass("card")
-                weatherCard.attr("style", "width: 18rem;");
-                // add the weather card to the carousel class
-                weatherCard.appendTo(carouselCell);
-                
-                // create the card-body
-                var cardBody = $("<div>")
-                cardBody.addClass("card-body");
-                // add the card body to the weather card
-                cardBody.appendTo(weatherCard)
-                
-                // add a card title
-                var cardTitle = $("<h5>")
-                // add class to the card title
-                cardTitle.addClass("card-title");
                 // add text the card-title
-                cardTitle.text(theDate)
-                // append the card title to the card body
-                cardTitle.appendTo(cardBody);
-                
-                // add a card humidity
-                var cardTemp = $("<h6>")
-                // add class to the card title
-                cardTemp.addClass("card-subtitle mb-2 text-muted");
-                // add text the card-title
-                cardTemp.text(theTemp)
-                // append the card title to the card body
-                cardTemp.appendTo(cardBody);
+                $("#day"+j).text(theDate)
 
-                // add a card humidity
-                var cardHumid = $("<h6>")
-                // add class to the card title
-                cardHumid.addClass("card-subtitle mb-2 text-muted");
-                // add text the card-title
-                cardHumid.text(theHumi)
-                // append the card title to the card body
-                cardHumid.appendTo(cardBody);
+                $("#temp"+j).html('Temperature: ' + theTemp + '<span>&#8457;</span>')
 
-                // append the card body to the card
-                carouselCell.appendTo(carousel);
-
+                $("#humidity"+j).html('Humidity: ' + theHumi + '<span>&#37;</span>')           
                     
                 }
 

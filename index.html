@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breeze WeatherApp</title>
-    <!-- link Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- link flickity CSS -->
     <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+
+    <!-- link Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- link to google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Forum&family=Noto+Sans+TC:wght@300&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+  <!-- link to externa css -->
+  <link rel="stylesheet" href="./Styles.css">
 
 </head>
 <body>
@@ -24,7 +29,7 @@
                   <div class="col-sm-4">
                     <div class="row"> 
                       <!-- auto pop  location search input -->
-                      <label>Location:</label>
+                      <label>Add New Location:</label>
                       <input id="searchInput" class="form-control" type="text" placeholder="Enter a city. . .">
                       <input type="hidden" id="latitudeInput">
                       <input type="hidden" id="longitudeInput">
@@ -51,25 +56,97 @@
                         </div>
                     </div>
                   </div>
+                  <br>
+                  <br>
+                  <br>
                     <div class="col-sm-12"> 
-                        <div class="card-body">
-                            <h1>5-Day Forecast</h1>
-                           <!-- Flickity HTML init -->
-                          <div id="forcastContainer">
-                            <!-- <div class="carousel" data-flickity>
-                              <div class="carousel-cell">
-                                <div class="card" style="width: 18rem;">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                  </div>
-                                </div>
-                              </div> -->
 
+                            <h1>7-Day Forecast</h1>
+                           <!-- Flickity HTML init -->
+
+                            <div id="forcastContainer" class="carousel content-center" data-flickity>
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day0" class="card-title">Card title</h5>
+                                    <h6 id="temp0" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity0" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>
+
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day1" class="card-title">Card title</h5>
+                                    <h6 id="temp1" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity1" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>
+                              
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day2" class="card-title">Card title</h5>
+                                    <h6 id="temp2" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity2" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>
+                              
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day3" class="card-title">Card title</h5>
+                                    <h6 id="temp3" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity3" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>
+                              
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day4" class="card-title">Card title</h5>
+                                    <h6 id="temp4" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity4" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>
+
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day5" class="card-title">Card title</h5>
+                                    <h6 id="temp5" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity5" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>                              
+                              
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day6" class="card-title">Card title</h5>
+                                    <h6 id="temp6" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity6" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>       
+                              
+                              <div class="carousel-cell">
+                              
+                                
+                                    <h5 id="day7" class="card-title">Card title</h5>
+                                    <h6 id="temp7" class="card-subtitle">Card subtitle</h6>
+                                    <h6 id="humidity7" class="card-subtitle">Card subtitle</h6>
+                                  
+                            
+                              </div>                                
+                              
                             </div>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -82,13 +159,6 @@
 
 
           </div>
-
-    
-
-
-<!-- link to Jquery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <!-- google maps API -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeADDKHgPr6Glrmraxtvv2JU8zzP_xKLc&libraries=places"></script>
 
@@ -97,15 +167,18 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-
-<!-- link to main JS -->
-<script src="./brain.js"></script>
-
-<!-- moments js -->
-<script src="https://momentjs.com/downloads/moment.js"></script>
+<!-- link to Jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- link flickity JS -->
 <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+
+<!-- moments js -->
+<!-- <script src="https://momentjs.com/downloads/moment.js"></script> -->
+<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
+<!-- link to main JS -->
+<script src="./brain.js"></script>
 
 
 </body>

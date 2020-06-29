@@ -1,25 +1,64 @@
 * { box-sizing: border-box; }
 
 body { 
-    font-family: sans-serif; 
+  font-family: 'Source Code Pro', monospace, sans-serif; 
 }
 
+h1, h2, h3, h4, h5{
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.navbar-brand{
+  font-family: 'Dancing Script', cursive
+}
+
+.card-body{
+  height: 200px;
+  width: 100%;
+}
+
+/* external css: flickity.css */
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.card-title{
+  margin: 5px;
+}
+.card-subtitle{
+  margin: 5px;
+}
+
+#forcastContainer{
+  width: 100%;
+}
 
 .carousel {
-  background: #EEE;
+  background: rgb(255, 255, 255);
+  margin: 20px;
 }
 
+
+
 .carousel-cell {
-  width: 100%; /* half-width */
-  height: 160px;
-  margin-right: 10px;
+  font-size: x-large;
+  color: white;
+  text-align: center;
+  width: 50%;
+  height: 75px;
+  margin: 20px;
+  background: rgba(50, 110, 241, 0.986);
+  border-radius: 5px;
+}
+
+@media screen and ( min-width: 768px ) {
+  /* half-width cells for larger devices */
+  .carousel-cell { width: 50%; }
 }
 
 /* cell number */
 .carousel-cell:before {
   display: block;
   text-align: center;
-  content: counter(gallery-cell);
   line-height: 200px;
   font-size: 80px;
   color: white;
