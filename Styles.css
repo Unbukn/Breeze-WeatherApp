@@ -2,6 +2,8 @@
 
 body { 
   font-family: 'Source Code Pro', monospace, sans-serif; 
+  background-color: rgb(45, 87, 163);
+  margin-top: 50px;
 }
 
 h1, h2, h3, h4, h5{
@@ -37,17 +39,26 @@ body { font-family: sans-serif; }
   margin: 20px;
 }
 
+.box{
 
+  background-color: #fff;
+  border: 1px solid #eceff1;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+  padding: 15px;
+  margin: 15px;
+}
 
 .carousel-cell {
   font-size: x-large;
   color: white;
   text-align: center;
-  width: 50%;
-  height: 100px;
+  width: 70%;
+  height: 200px;
   margin: 20px;
   background: rgba(50, 110, 241, 0.986);
   border-radius: 5px;
+  overflow: auto;
 }
 
 @media screen and ( min-width: 768px ) {

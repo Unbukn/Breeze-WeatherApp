@@ -18,59 +18,55 @@
 <body>
     <header>
         <!-- NAVBAR -->
-        <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Breeze WeatherApp</span>
+        <nav class="navbar navbar-light bg-light fixed-top">
+        <marquee behavior="" direction=""><span class="navbar-brand mb-0 h1">The Breeze Weather App - Trust us, using it is a breeze!</span></marquee>
         </nav>
     </header>
 
         <div class="container">
             <div class="container">
-
+                  <div class="row">
                   <div class="col-sm-6">
-                    <div class="row"> 
-                      <!-- auto pop  location search input -->
-                      <label>Add New Location:</label>
-                      <input id="searchInput" class="form-control" type="text" placeholder="Enter a city. . .">
-                      <input type="hidden" id="latitudeInput">
-                      <input type="hidden" id="longitudeInput">
-                      <!-- <button id="srchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-                      <!-- display for location being populated -->
-                      <br><br>
-                      <div class="latLongView">
-                      </div>
-                    </div>
-                        <ul id="cityList" class="list-group">
-                            <!-- <li class="list-group-item active">Cras justo odio</li> -->
-                        </ul>
-
-                  </div>
-                  <div class="col-sm-8">
-                        <div class="card-body">
-                            <h4 id="cityName" class="card-title"></h4><br>
-                            <h5 id="temperature" class="card-subtitle mb-2"></h5><br>
-                            <h5 id="humidity" class="card-subtitle mb-2"></h5><br>
-                            <h5 id="windSpeed" class="card-subtitle mb-2"></h5><br>
-                            <h5 id="cityDisc" class="card-subtitle mb-2"></h5><br>
+                        <div class="row box"> 
+                              <!-- auto pop  location search input -->
+                              <label>Add New Location:</label>
+                              <input id="searchInput" class="form-control" type="text" placeholder="Enter a city. . .">
+                              <input type="hidden" id="latitudeInput">
+                              <input type="hidden" id="longitudeInput">
+                              <!-- <button id="srchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+                              <!-- display for location being populated -->
+                              <div class="latLongView">
+                              </div>
+                        </div>
+                        
+                        
+                        <div class="box">
+                              <p>Your Locations:</p>
+                              <ul id="cityList" class="list-group">
+                              </ul>                              
                         </div>
 
                   </div>
-                  <br>
-                  <br>
-                  <br>
-                  
-                    <div class="col-sm-12"> 
-
-                            
+                  <div class="col-sm-6">
+                        <div class="card-body box">
+                            <h4 id="cityName" class="card-title">Click a location to see current and forecasted the weather!</h4>
+                            <h5 id="temperature" class="card-subtitle mb-2"></h5>
+                            <h5 id="humidity" class="card-subtitle mb-2"></h5>
+                            <h5 id="windSpeed" class="card-subtitle mb-2"></h5>
+                            <h5 id="cityDisc" class="card-subtitle mb-2"></h5>
+                        </div>
+                  </div>
+</div>
+<div class="row">
+                    <div class="col-sm-12">
+                       <div class="">
                            <!-- Flickity HTML init -->
-                           <h1 class="content-center">7-Day Forecast</h1>
-                            <div id="forcastContainer" class="carousel" data-flickity='{ "autoPlay": 2000 }'>
-                              
+                           <h1 class="col-sm-12 text-center box">7-Day Forecast</h1>
+                            <div id="forcastContainer" class="carousel box" data-flickity='{ "autoPlay": 2000 }'>
                               <div class="carousel-cell">
-                              
-                                
-                                    <h5 id="day0" class="card-title">Card title</h5>
-                                    <h6 id="temp0" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity0" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day0" class="card-title"></h5>
+                                    <h6 id="temp0" class="card-subtitle"></h6>
+                                    <h6 id="humidity0" class="card-subtitle"></h6>
                                   
                             
                               </div>
@@ -78,9 +74,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day1" class="card-title">Card title</h5>
-                                    <h6 id="temp1" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity1" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day1" class="card-title"></h5>
+                                    <h6 id="temp1" class="card-subtitle"></h6>
+                                    <h6 id="humidity1" class="card-subtitle"></h6>
                                   
                             
                               </div>
@@ -88,9 +84,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day2" class="card-title">Card title</h5>
-                                    <h6 id="temp2" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity2" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day2" class="card-title"></h5>
+                                    <h6 id="temp2" class="card-subtitle"></h6>
+                                    <h6 id="humidity2" class="card-subtitle"></h6>
                                   
                             
                               </div>
@@ -98,9 +94,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day3" class="card-title">Card title</h5>
-                                    <h6 id="temp3" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity3" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day3" class="card-title"></h5>
+                                    <h6 id="temp3" class="card-subtitle"></h6>
+                                    <h6 id="humidity3" class="card-subtitle"></h6>
                                   
                             
                               </div>
@@ -108,9 +104,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day4" class="card-title">Card title</h5>
-                                    <h6 id="temp4" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity4" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day4" class="card-title"></h5>
+                                    <h6 id="temp4" class="card-subtitle"></h6>
+                                    <h6 id="humidity4" class="card-subtitle"></h6>
                                   
                             
                               </div>
@@ -118,9 +114,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day5" class="card-title">Card title</h5>
-                                    <h6 id="temp5" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity5" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day5" class="card-title"></h5>
+                                    <h6 id="temp5" class="card-subtitle"></h6>
+                                    <h6 id="humidity5" class="card-subtitle"></h6>
                                   
                             
                               </div>                              
@@ -128,9 +124,9 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day6" class="card-title">Card title</h5>
-                                    <h6 id="temp6" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity6" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day6" class="card-title"></h5>
+                                    <h6 id="temp6" class="card-subtitle"></h6>
+                                    <h6 id="humidity6" class="card-subtitle"></h6>
                                   
                             
                               </div>       
@@ -138,24 +134,21 @@
                               <div class="carousel-cell">
                               
                                 
-                                    <h5 id="day7" class="card-title">Card title</h5>
-                                    <h6 id="temp7" class="card-subtitle">Card subtitle</h6>
-                                    <h6 id="humidity7" class="card-subtitle">Card subtitle</h6>
+                                    <h5 id="day7" class="card-title"></h5>
+                                    <h6 id="temp7" class="card-subtitle"></h6>
+                                    <h6 id="humidity7" class="card-subtitle"></h6>
                                   
                             
                               </div>                                
                               
                             </div>
 
-                      </div>
-                    
+                    </div>
+                  </div>
                   </div>
 
-                
-
-
-
-
+                  </div>
+                  </div>
 
 
           </div>

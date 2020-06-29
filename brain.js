@@ -1,32 +1,14 @@
 $(document).ready(function () {
-    // First get the client ip address
-    $.getJSON('https://api.ipregistry.co/?key=4sl8k6on8u1sef', function(data) {
-    var crntPC = data.ip
-    console.log(crntPC)
-        // next use ip address to find geo location
-        var getTheIP = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://free-geo-ip.p.rapidapi.com/json/" + crntPC,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "free-geo-ip.p.rapidapi.com",
-                "x-rapidapi-key": "d82c676afemsh7edaf163ce44088p1641dajsn681616f67751"
-            }
-        }
-
-        $.ajax(getTheIP).done(function (theCrntLocation) {
-            var theLocation = theCrntLocation.city
-            console.log(theLocation); 
-            var theLat = theCrntLocation.latitude
-            var theLong = theCrntLocation.longitude
-            produceWeatherResults(theLocation,theLat, theLong)  
-        });
-    });
 
     // define list containing of cities
     var cityList = $("#cityList")
-    var yourList = [
+    // check for saved lists
+    var yourList = JSON.parse(localStorage.getItem("WeatherLocations"));
+    
+    if (yourList == null) {
+        // save the default list of cities per the assignment
+        // console.log("no saved locations")
+        var yourList = [
         ["Austin, TX, USA", 30.267153, -97.7430608],
         ["Chicago, IL, USA", 41.8781136, -87.6297982],
         ["New York, NY, USA", 40.7127753, -74.0059728],
@@ -35,13 +17,16 @@ $(document).ready(function () {
         ["Seattle, WA, USA", 47.6062095, -122.3320708],
         ["Denver, CO, USA", 39.7392358, -104.990251],
         ["Atlanta, GA, USA", 33.7489954, -84.3879824],
-        
     ];
+    } else {
+    //cl results found, save the stored list as your list 
+    var yourList = yourList
+    }
+
     // api call to open weather api
     var APIKey = "19ebe7d8453b09616b508ab44e2e92b8";
     // build a new list based on the your list array
     buildCityList(yourList)
-
 
     var searchInput = "";
         autocomplete = new google.maps.places.Autocomplete((document.getElementById("searchInput")), {
@@ -60,7 +45,9 @@ $(document).ready(function () {
 
         newCity = newArray
         yourList.push(newCity)
-
+        // save the list with the new location to local storage
+        // console.log("adding "+newCity+"to the list and saving to local storage")
+        localStorage.setItem("WeatherLocations", JSON.stringify(yourList));
         // build new list item with city found in it
         // get the current value of the search bar
         buildCityList(yourList)
@@ -113,9 +100,8 @@ $(document).ready(function () {
 
         }
 
-        
         function produceWeatherResults(theLocation,theLat,theLong) {
-            console.log(theLocation)
+            // console.log(theLocation)
             // Here we are building the URL we need to query the database
             
             var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ theLat +"&lon="+ theLong +"&cnt=16&units=imperial&exclude=hourly,minutely&appid=" + APIKey;
@@ -128,12 +114,11 @@ $(document).ready(function () {
             // We store all of the retrieved data inside of an object called "response"
             .then(function(OpenWeatherMap) {
                 // Log the queryURL
-                console.log(OpenWeatherMap);
+                // console.log(OpenWeatherMap);
                 // grab the name of the city 
                 var cityName = theLocation
                 // add the name of the city to the DOM
-                $("#cityName").text("Current City: " + cityName);
-                $(".navbar-brand").text("Current City: " + cityName);
+                $("#cityName").text("Current weather in " + cityName);
                 // grab the temp of the city
                 var cityTemp = OpenWeatherMap.current.temp
                 // add the temp to the DOM
@@ -150,6 +135,9 @@ $(document).ready(function () {
                 var cityDisc = OpenWeatherMap.current.weather[0].description
                 // add the UV index to the DOM
                 $("#cityDisc").text("Description: " + cityDisc);
+                // update the nav crawler
+                $(".navbar-brand").html('Current location: ' + cityName + '.       Temperature: ' + cityTemp + '<span>&#8457;</span>' + '       Humidity: ' + cityHumidity + '<span>&#37;</span>' + '       Wind Speed: ' + cityWindSpeed + 'MPH' );
+                
                 
                 for (j = 0; j < OpenWeatherMap.daily.length; j++) {
                 var m = moment()
