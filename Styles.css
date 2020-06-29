@@ -63,3 +63,16 @@ body { font-family: sans-serif; }
   font-size: 80px;
   color: white;
 }
+
+/* position dots up a bit */
+.flickity-page-dots {
+  bottom: -22px;
+}
+/* dots are lines */
+.flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  margin: 0;
+  border-radius: 0;
+  color: blue;
+}
