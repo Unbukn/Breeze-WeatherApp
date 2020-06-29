@@ -1,8 +1,5 @@
 # Breeze-WeatherApp
 Breeze-Weather is your one stop shop for all thing weather in your local area. It's simple and easy to use. Give it a try here -> 
-<figure class="video_container">
-  <iframe src="https://drive.google.com/file/d/1N6T24QmmQkjUYI0B7OJeMbuSH_nTk23g/preview" width="640" height="480"></iframe>
-</figure>
 
 # Demo / Video / Photos
 
@@ -11,6 +8,7 @@ https://unbukn.github.io/Breeze-WeatherApp/
 
 ## Videos
 https://youtu.be/bXDdy6X90uM
+
 https://youtu.be/RcuUWnQ2u8k
 
 ## Photos
