@@ -12,16 +12,23 @@ Breeze-Weather is your one stop shop for all thing weather in your local area. I
 # Videos
 <!-- blank line -->
 <figure class="video_container">
-  <iframe src="https://youtu.be/RcuUWnQ2u8k" frameborder="0" allowfullscreen="true"> </iframe>
+  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="https://youtu.be/bXDdy6X90uM" type="video/webm">
+  </video>
+</figure>
+<!-- blank line -->
+
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="https://youtu.be/RcuUWnQ2u8k" type="video/webm">
+  </video>
 </figure>
 <!-- blank line -->
 
 
-
 # Weather Dashboard
 A weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
-
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
 
 ## User Story
 
@@ -46,24 +53,27 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
-```
 
-The following image demonstrates the application functionality:
+> # Technology Used
+> - HyperText Markup Language
+> - Cascading Styles Sheets
+> - Bootstrap 4
+> - javascript ES6
+> - jQuery
+> - Moments.js
+> - Google Places API
+> - Open Weather API
 
+# Bugs
 
+When new location is entered you have to manually click on the location
 
-https://youtu.be/bXDdy6X90uM
+# Future Enhancements
 
-https://youtu.be/RcuUWnQ2u8k
+1. Geo location based on ip address
+2. automatically select the newly added location
 
+# Support
 
-## Review
+If you need support please contact James Hudgins @ james.hudgins.work@gmail.com.
 
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
