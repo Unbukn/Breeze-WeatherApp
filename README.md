@@ -12,9 +12,10 @@ Breeze-Weather is your one stop shop for all thing weather in your local area. I
 # Videos
 <!-- blank line -->
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/bXDdy6X90uM" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://youtu.be/RcuUWnQ2u8k" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 <!-- blank line -->
+
 
 
 # Weather Dashboard
@@ -51,7 +52,7 @@ The following image demonstrates the application functionality:
 
 
 
-
+https://youtu.be/bXDdy6X90uM
 
 https://youtu.be/RcuUWnQ2u8k
 
