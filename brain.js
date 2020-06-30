@@ -1,5 +1,20 @@
 $(document).ready(function () {
+// api call to open weather api
+var APIKey = "19ebe7d8453b09616b508ab44e2e92b8";
+// build a new list based on the your list array
 
+// ask user for geo location
+get_location(show_map)
+
+
+function get_location() {
+    if (Modernizr.geolocation) {
+    navigator.geolocation.getCurrentPosition(show_map);
+    
+    } else {
+      // no native support; maybe try Gears?
+    }
+}
     // define list containing of cities
     var cityList = $("#cityList")
     // check for saved lists
@@ -9,7 +24,6 @@ $(document).ready(function () {
         // save the default list of cities per the assignment
         // console.log("no saved locations")
         var yourList = [
-        ["Austin, TX, USA", 30.267153, -97.7430608],
         ["Chicago, IL, USA", 41.8781136, -87.6297982],
         ["New York, NY, USA", 40.7127753, -74.0059728],
         ["Orlando, FL, USA", 28.5383355, -81.3792365],
@@ -23,9 +37,7 @@ $(document).ready(function () {
     var yourList = yourList
     }
 
-    // api call to open weather api
-    var APIKey = "19ebe7d8453b09616b508ab44e2e92b8";
-    // build a new list based on the your list array
+
     buildCityList(yourList)
 
     var searchInput = "";
@@ -98,6 +110,24 @@ $(document).ready(function () {
 
         });
 
+        }
+
+        function show_map(position) {
+            var theLat = position.coords.latitude;
+            var theLong = position.coords.longitude;
+            // let's show a map or do something interesting!
+            // Here we are building the URL we need to query the database            
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat="+ theLat +"&lon="+ theLong +"&appid=" + APIKey;
+            // Here we run our AJAX call to the OpenWeatherMap API
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+            })
+            // We store all of the retrieved data inside of an object called "response"
+            .then(function(OpenWeatherMap) {
+            var theLocation = OpenWeatherMap.name
+            produceWeatherResults(theLocation,theLat,theLong)
+            });
         }
 
         function produceWeatherResults(theLocation,theLat,theLong) {
